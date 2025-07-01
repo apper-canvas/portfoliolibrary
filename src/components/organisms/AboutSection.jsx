@@ -17,7 +17,7 @@ const loadSkills = async (forceRefresh = false) => {
       setError('')
       // Add slight delay for better UX, but allow immediate refresh when forced
       if (!forceRefresh) {
-await new Promise(resolve => setTimeout(resolve, 300))
+        await new Promise(resolve => setTimeout(resolve, 300))
       }
       const data = await skillsService.getAll()
       setSkills(data || [])

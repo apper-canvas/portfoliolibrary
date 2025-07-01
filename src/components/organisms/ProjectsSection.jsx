@@ -24,7 +24,7 @@ const loadProjects = async (forceRefresh = false) => {
         await new Promise(resolve => setTimeout(resolve, 400))
       }
       const data = await projectsService.getAll()
-      setProjects(data)
+      setProjects(data || [])
     } catch (err) {
       setError('Failed to load projects. Please try again.')
       // Auto-retry with force refresh on certain errors

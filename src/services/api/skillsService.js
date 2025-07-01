@@ -28,10 +28,10 @@ const params = {
       
       return response.data || []
     } catch (error) {
-      if (error?.response?.data?.message) {
+if (error?.response?.data?.message) {
         console.error("Error fetching skills:", error?.response?.data?.message)  
       }      
-      //throw error
+      return []
     }
   },
 

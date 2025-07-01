@@ -44,11 +44,12 @@ const projectsService = {
       
       return transformedData
     } catch (error) {
-      if (error?.response?.data?.message) {
+if (error?.response?.data?.message) {
         console.error("Error fetching projects:", error?.response?.data?.message)
       } else {
         console.error(error.message);
-      }   
+      }
+      return []
     }
   },
 
