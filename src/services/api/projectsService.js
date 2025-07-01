@@ -44,8 +44,11 @@ const projectsService = {
       
       return transformedData
     } catch (error) {
-      console.error("Error fetching projects:", error)
-      throw error
+      if (error?.response?.data?.message) {
+        console.error("Error fetching projects:", error?.response?.data?.message)
+      } else {
+        console.error(error.message);
+      }   
     }
   },
 
