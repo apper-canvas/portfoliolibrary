@@ -32,13 +32,12 @@ const ResumeSection = () => {
   }, [])
 
   const handleDownloadResume = () => {
-    // In a real application, this would download the actual resume
+// In a real application, this would download the actual resume
     const link = document.createElement('a')
     link.href = '/resume.pdf'
-    link.download = 'Sarah_Johnson_QA_Resume.pdf'
+    link.download = 'Pravin_Varade_Patil_QA_Resume.pdf'
     link.click()
   }
-
   const education = [
     {
       degree: "Bachelor of Science in Computer Science",
@@ -65,7 +64,7 @@ const ResumeSection = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            My <span className="text-gradient">Journey</span>
+My <span className="text-gradient">Journey</span>
           </h2>
 <p className="text-lg text-secondary max-w-3xl mx-auto leading-relaxed mb-8">
             A comprehensive overview of my 4 years of professional experience, education, and career progression 

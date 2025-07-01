@@ -27,11 +27,11 @@ const AboutSection = () => {
 
   useEffect(() => {
     loadSkills()
-  }, [])
+}, [])
 
   const stats = [
-    { number: "5+", label: "Years Experience", icon: "Calendar" },
-    { number: "150+", label: "Projects Tested", icon: "TestTube" },
+    { number: "4+", label: "Years Experience", icon: "Calendar" },
+    { number: "50+", label: "Projects Tested", icon: "TestTube" },
     { number: "99.9%", label: "Bug Detection Rate", icon: "Target" },
     { number: "50+", label: "Tools Mastered", icon: "Wrench" }
   ]
@@ -47,15 +47,14 @@ const AboutSection = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            About <span className="text-gradient">Me</span>
+About <span className="text-gradient">Me</span>
           </h2>
           <p className="text-lg text-secondary max-w-3xl mx-auto leading-relaxed">
-            With over 5 years of experience in software quality assurance, I specialize in 
+            With over 4 years of experience in software quality assurance, I specialize in 
             creating comprehensive testing strategies that ensure exceptional user experiences. 
             My passion lies in breaking things to make them better.
           </p>
         </motion.div>
-
         {/* Stats */}
         <motion.div
           className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16"

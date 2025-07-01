@@ -21,13 +21,12 @@ const HeroSection = () => {
   }, [])
 
   const handleResumeDownload = () => {
-    // In a real application, this would download the actual resume
+// In a real application, this would download the actual resume
     const link = document.createElement('a')
     link.href = '/resume.pdf'
-    link.download = 'QA_Resume.pdf'
+    link.download = 'Pravin_Varade_Patil_QA_Resume.pdf'
     link.click()
   }
-
   return (
     <section id="home" className="min-h-screen bg-gradient-to-br from-primary/5 to-accent/5 pt-16">
       <div className="container mx-auto px-4 py-16">
@@ -51,10 +50,10 @@ const HeroSection = () => {
             <motion.h1
               className="text-4xl md:text-6xl font-bold text-gray-900 mb-6"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Sarah <span className="text-gradient">Johnson</span>
+              Pravin Varade <span className="text-gradient">Patil</span>
             </motion.h1>
             
             <div className="h-16 mb-6">
