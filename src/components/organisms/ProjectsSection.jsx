@@ -15,22 +15,36 @@ const ProjectsSection = () => {
 
   const categories = ['All', 'Web Testing', 'Mobile Testing', 'API Testing', 'Performance Testing']
 
-  const loadProjects = async () => {
+const loadProjects = async (forceRefresh = false) => {
     try {
       setLoading(true)
       setError('')
-      await new Promise(resolve => setTimeout(resolve, 400))
+      // Add slight delay for better UX, but allow immediate refresh when forced
+      if (!forceRefresh) {
+        await new Promise(resolve => setTimeout(resolve, 400))
+      }
       const data = await projectsService.getAll()
       setProjects(data)
     } catch (err) {
       setError('Failed to load projects. Please try again.')
+      // Auto-retry with force refresh on certain errors
+      if (err.message?.includes('cache') || err.message?.includes('stale')) {
+        setTimeout(() => loadProjects(true), 1000)
+      }
     } finally {
       setLoading(false)
     }
   }
 
-  useEffect(() => {
+useEffect(() => {
     loadProjects()
+    
+    // Set up periodic refresh to catch external changes
+    const refreshInterval = setInterval(() => {
+      loadProjects(true)
+    }, 30000) // Refresh every 30 seconds
+    
+    return () => clearInterval(refreshInterval)
   }, [])
 
   const filteredProjects = filter === 'All' 

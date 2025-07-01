@@ -7,7 +7,7 @@ const projectsService = {
       const apperClient = new ApperClient({
         apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
-      })
+})
       
       const params = {
         fields: [
@@ -20,7 +20,11 @@ const projectsService = {
           { field: { Name: "link" } },
           { field: { Name: "github" } },
           { field: { Name: "category" } }
-        ]
+        ],
+        // Cache-busting parameter to ensure fresh data
+        cacheKey: `projects_${Date.now()}`,
+        includeDeletedRecords: false,
+        orderBy: [{ fieldName: "CreatedOn", sorttype: "DESC" }]
       }
       
       const response = await apperClient.fetchRecords('project', params)
@@ -51,7 +55,7 @@ const projectsService = {
       const apperClient = new ApperClient({
         apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
-      })
+})
       
       const params = {
         fields: [
@@ -64,7 +68,10 @@ const projectsService = {
           { field: { Name: "link" } },
           { field: { Name: "github" } },
           { field: { Name: "category" } }
-        ]
+        ],
+        // Cache-busting parameter to ensure fresh data
+        cacheKey: `project_${id}_${Date.now()}`,
+        includeDeletedRecords: false
       }
       
       const response = await apperClient.getRecordById('project', parseInt(id), params)

@@ -7,7 +7,7 @@ const experienceService = {
       const apperClient = new ApperClient({
         apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
-      })
+})
       
       const params = {
         fields: [
@@ -17,7 +17,11 @@ const experienceService = {
           { field: { Name: "duration" } },
           { field: { Name: "description" } },
           { field: { Name: "achievements" } }
-        ]
+        ],
+        // Cache-busting parameter to ensure fresh data
+        cacheKey: `experience_${Date.now()}`,
+        includeDeletedRecords: false,
+        orderBy: [{ fieldName: "CreatedOn", sorttype: "DESC" }]
       }
       
       const response = await apperClient.fetchRecords('experience', params)
@@ -49,7 +53,7 @@ const experienceService = {
       const apperClient = new ApperClient({
         apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
-      })
+})
       
       const params = {
         fields: [
@@ -59,7 +63,10 @@ const experienceService = {
           { field: { Name: "duration" } },
           { field: { Name: "description" } },
           { field: { Name: "achievements" } }
-        ]
+        ],
+        // Cache-busting parameter to ensure fresh data
+        cacheKey: `experience_${id}_${Date.now()}`,
+        includeDeletedRecords: false
       }
       
       const response = await apperClient.getRecordById('experience', parseInt(id), params)

@@ -11,23 +11,37 @@ const AboutSection = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  const loadSkills = async () => {
+const loadSkills = async (forceRefresh = false) => {
     try {
       setLoading(true)
       setError('')
-      await new Promise(resolve => setTimeout(resolve, 300))
+      // Add slight delay for better UX, but allow immediate refresh when forced
+      if (!forceRefresh) {
+        await new Promise(resolve => setTimeout(resolve, 300))
+      }
       const data = await skillsService.getAll()
       setSkills(data)
     } catch (err) {
       setError('Failed to load skills. Please try again.')
+      // Auto-retry with force refresh on certain errors
+      if (err.message?.includes('cache') || err.message?.includes('stale')) {
+        setTimeout(() => loadSkills(true), 1000)
+      }
     } finally {
       setLoading(false)
     }
   }
 
-  useEffect(() => {
+useEffect(() => {
     loadSkills()
-}, [])
+    
+    // Set up periodic refresh to catch external changes
+    const refreshInterval = setInterval(() => {
+      loadSkills(true)
+    }, 30000) // Refresh every 30 seconds
+    
+    return () => clearInterval(refreshInterval)
+  }, [])
 
   const stats = [
     { number: "4+", label: "Years Experience", icon: "Calendar" },

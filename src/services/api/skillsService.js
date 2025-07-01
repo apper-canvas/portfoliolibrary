@@ -7,14 +7,17 @@ const skillsService = {
       const apperClient = new ApperClient({
         apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
-      })
+})
       
       const params = {
         fields: [
           { field: { Name: "Name" } },
           { field: { Name: "category" } },
           { field: { Name: "proficiency" } }
-        ]
+        ],
+        // Cache-busting parameter to ensure fresh data
+        cacheKey: `skills_${Date.now()}`,
+        includeDeletedRecords: false
       }
       
       const response = await apperClient.fetchRecords('skill', params)
@@ -38,14 +41,17 @@ const skillsService = {
       const apperClient = new ApperClient({
         apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
-      })
+})
       
       const params = {
         fields: [
           { field: { Name: "Name" } },
           { field: { Name: "category" } },
           { field: { Name: "proficiency" } }
-        ]
+        ],
+        // Cache-busting parameter to ensure fresh data
+        cacheKey: `skill_${id}_${Date.now()}`,
+        includeDeletedRecords: false
       }
       
       const response = await apperClient.getRecordById('skill', parseInt(id), params)
