@@ -9,7 +9,7 @@ const experienceService = {
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
 })
       
-      const params = {
+const params = {
         fields: [
           { field: { Name: "Name" } },
           { field: { Name: "company" } },
@@ -18,8 +18,6 @@ const experienceService = {
           { field: { Name: "description" } },
           { field: { Name: "achievements" } }
         ],
-        // Cache-busting parameter to ensure fresh data
-        cacheKey: `experience_${Date.now()}`,
         includeDeletedRecords: false,
         orderBy: [{ fieldName: "CreatedOn", sorttype: "DESC" }]
       }
@@ -55,7 +53,7 @@ const experienceService = {
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
 })
       
-      const params = {
+const params = {
         fields: [
           { field: { Name: "Name" } },
           { field: { Name: "company" } },
@@ -64,8 +62,6 @@ const experienceService = {
           { field: { Name: "description" } },
           { field: { Name: "achievements" } }
         ],
-        // Cache-busting parameter to ensure fresh data
-        cacheKey: `experience_${id}_${Date.now()}`,
         includeDeletedRecords: false
       }
       
