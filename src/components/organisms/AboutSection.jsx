@@ -7,9 +7,10 @@ import Empty from "@/components/ui/Empty";
 import Loading from "@/components/ui/Loading";
 import skillsService from "@/services/api/skillsService";
 const AboutSection = () => {
-  const [skills, setSkills] = useState([])
+const [skills, setSkills] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [clearingSkills, setClearingSkills] = useState(false)
 
 const loadSkills = async (forceRefresh = false) => {
     try {
@@ -29,6 +30,22 @@ const loadSkills = async (forceRefresh = false) => {
       }
     } finally {
       setLoading(false)
+    }
+}
+
+  const clearAllSkills = async () => {
+    if (!window.confirm('Are you sure you want to delete all skills? This action cannot be undone.')) {
+      return
+    }
+    
+    try {
+      setClearingSkills(true)
+      await skillsService.deleteAll()
+      await loadSkills(true) // Refresh the list
+    } catch (error) {
+      console.error('Failed to clear skills:', error)
+    } finally {
+      setClearingSkills(false)
     }
   }
 
@@ -103,12 +120,32 @@ About <span className="text-gradient">Me</span>
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
-            Technical <span className="text-gradient">Expertise</span>
-          </h3>
-          
+          <div className="flex justify-between items-center mb-8">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 text-center flex-1">
+              Technical <span className="text-gradient">Expertise</span>
+            </h3>
+            {!loading && !error && skills.length > 0 && (
+              <button
+                onClick={clearAllSkills}
+                disabled={clearingSkills}
+                className="px-4 py-2 bg-red-500 hover:bg-red-600 disabled:bg-red-300 text-white rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
+              >
+                {clearingSkills ? (
+                  <>
+                    <ApperIcon name="Loader2" size={16} className="animate-spin" />
+                    Clearing...
+                  </>
+                ) : (
+                  <>
+                    <ApperIcon name="Trash2" size={16} />
+                    Clear All Skills
+                  </>
+                )}
+              </button>
+            )}
+          </div>
           {loading && <Loading />}
           
           {error && (

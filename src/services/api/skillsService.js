@@ -192,11 +192,76 @@ const params = {
         
         return response.results.filter(result => result.success).length > 0
       }
-    } catch (error) {
+} catch (error) {
       console.error("Error deleting skill:", error)
+      throw error
+    }
+  },
+
+  async deleteAll() {
+    try {
+      const { ApperClient } = window.ApperSDK
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      })
+      
+      // First, get all skill IDs
+      const fetchParams = {
+        fields: [
+          { field: { Name: "Id" } }
+        ],
+        includeDeletedRecords: false
+      }
+      
+      const fetchResponse = await apperClient.fetchRecords('skill', fetchParams)
+      
+      if (!fetchResponse.success) {
+        console.error(fetchResponse.message)
+        toast.error(fetchResponse.message)
+        throw new Error(fetchResponse.message)
+      }
+      
+      const skillIds = fetchResponse.data?.map(skill => skill.Id) || []
+      
+      if (skillIds.length === 0) {
+        toast.info("No skills to delete")
+        return true
+      }
+      
+      // Delete all skills
+      const deleteParams = {
+        RecordIds: skillIds
+      }
+      
+      const response = await apperClient.deleteRecord('skill', deleteParams)
+      
+      if (!response.success) {
+        console.error(response.message)
+        toast.error(response.message)
+        throw new Error(response.message)
+      }
+      
+      if (response.results) {
+        const failedRecords = response.results.filter(result => !result.success)
+        if (failedRecords.length > 0) {
+          console.error(`Failed to delete ${failedRecords.length} records:${JSON.stringify(failedRecords)}`)
+          failedRecords.forEach(record => {
+            if (record.message) toast.error(record.message)
+          })
+        }
+        
+        const successCount = response.results.filter(result => result.success).length
+        if (successCount > 0) {
+          toast.success(`Successfully deleted ${successCount} skill${successCount > 1 ? 's' : ''}`)
+        }
+        
+        return successCount === skillIds.length
+      }
+    } catch (error) {
+      console.error("Error deleting all skills:", error)
       throw error
     }
   }
 }
-
 export default skillsService
