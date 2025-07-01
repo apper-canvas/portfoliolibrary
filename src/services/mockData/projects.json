@@ -55,7 +55,7 @@
     "category": "Web Testing"
   },
   {
-    "Id": 6,
+"Id": 6,
     "title": "IoT Device Testing Framework",
     "description": "Designed and implemented testing strategy for IoT devices in smart home ecosystem. Tested device connectivity, data transmission, mobile app integration, and cloud synchronization across multiple device types.",
     "image": "",
@@ -64,5 +64,27 @@
     "link": "",
     "github": "https://github.com/sarahjohnsonqa/iot-testing",
     "category": "Mobile Testing"
+  },
+  {
+    "Id": 7,
+    "title": "SaaS Applications Testing Suite",
+    "description": "Comprehensive testing of multiple SaaS applications focusing on multi-tenancy, subscription management, user onboarding, and integration capabilities. Implemented automated testing for various SaaS modules including billing, user management, and third-party integrations.",
+    "image": "",
+    "technologies": ["React", "Django", "PostgreSQL", "Stripe", "OAuth"],
+    "testingTools": ["Selenium", "Playwright", "Postman", "TestRail"],
+    "link": "https://saas-testing-demo.com",
+    "github": "https://github.com/sarahjohnsonqa/saas-testing-suite",
+    "category": "Web Testing"
+  },
+  {
+    "Id": 8,
+    "title": "CRM Application Quality Assurance",
+    "description": "End-to-end testing of customer relationship management application including contact management, sales pipeline, reporting dashboards, and email integration. Focused on data integrity, user permissions, and workflow automation testing.",
+    "image": "",
+    "technologies": ["Vue.js", "Laravel", "MySQL", "Redis", "Email APIs"],
+    "testingTools": ["Cypress", "PHPUnit", "Insomnia", "Browserstack"],
+    "link": "https://crm-app-demo.com",
+    "github": "https://github.com/sarahjohnsonqa/crm-testing",
+    "category": "Web Testing"
   }
 ]
