@@ -1,0 +1,98 @@
+[
+  {
+    "Id": 1,
+    "name": "Manual Testing",
+    "category": "Testing Types",
+    "proficiency": 95
+  },
+  {
+    "Id": 2,
+    "name": "Automation Testing",
+    "category": "Testing Types",
+    "proficiency": 90
+  },
+  {
+    "Id": 3,
+    "name": "API Testing",
+    "category": "Testing Types",
+    "proficiency": 88
+  },
+  {
+    "Id": 4,
+    "name": "Performance Testing",
+    "category": "Testing Types",
+    "proficiency": 82
+  },
+  {
+    "Id": 5,
+    "name": "Security Testing",
+    "category": "Testing Types",
+    "proficiency": 75
+  },
+  {
+    "Id": 6,
+    "name": "Mobile Testing",
+    "category": "Testing Types",
+    "proficiency": 85
+  },
+  {
+    "Id": 7,
+    "name": "Selenium",
+    "category": "Automation Tools",
+    "proficiency": 92
+  },
+  {
+    "Id": 8,
+    "name": "Cypress",
+    "category": "Automation Tools",
+    "proficiency": 87
+  },
+  {
+    "Id": 9,
+    "name": "Jest",
+    "category": "Automation Tools",
+    "proficiency": 80
+  },
+  {
+    "Id": 10,
+    "name": "Postman",
+    "category": "API Tools",
+    "proficiency": 90
+  },
+  {
+    "Id": 11,
+    "name": "JIRA",
+    "category": "Project Management",
+    "proficiency": 95
+  },
+  {
+    "Id": 12,
+    "name": "TestRail",
+    "category": "Test Management",
+    "proficiency": 88
+  },
+  {
+    "Id": 13,
+    "name": "SQL",
+    "category": "Database",
+    "proficiency": 85
+  },
+  {
+    "Id": 14,
+    "name": "Python",
+    "category": "Programming Languages",
+    "proficiency": 80
+  },
+  {
+    "Id": 15,
+    "name": "JavaScript",
+    "category": "Programming Languages",
+    "proficiency": 78
+  },
+  {
+    "Id": 16,
+    "name": "Java",
+    "category": "Programming Languages",
+    "proficiency": 75
+  }
+]

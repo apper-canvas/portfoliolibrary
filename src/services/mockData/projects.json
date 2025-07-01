@@ -1,0 +1,68 @@
+[
+  {
+    "Id": 1,
+    "title": "E-commerce Platform Testing",
+    "description": "Comprehensive testing of a full-scale e-commerce platform including user authentication, product catalog, shopping cart, payment processing, and order management. Implemented automated test suites for critical user journeys and API endpoints.",
+    "image": "",
+    "technologies": ["React", "Node.js", "MongoDB", "Stripe API"],
+    "testingTools": ["Selenium", "Postman", "Jest", "JIRA"],
+    "link": "https://example-ecommerce.com",
+    "github": "https://github.com/sarahjohnsonqa/ecommerce-testing",
+    "category": "Web Testing"
+  },
+  {
+    "Id": 2,
+    "title": "Mobile Banking App QA",
+    "description": "End-to-end testing of a mobile banking application focusing on security, usability, and performance. Conducted thorough testing of financial transactions, biometric authentication, and cross-platform compatibility.",
+    "image": "",
+    "technologies": ["React Native", "Firebase", "Biometric APIs"],
+    "testingTools": ["Appium", "TestComplete", "Charles Proxy"],
+    "link": "https://banking-app-demo.com",
+    "github": "",
+    "category": "Mobile Testing"
+  },
+  {
+    "Id": 3,
+    "title": "Healthcare API Testing Suite",
+    "description": "Developed comprehensive API testing framework for healthcare management system. Focused on HIPAA compliance, data integrity, and performance under high load conditions. Automated regression testing for multiple API versions.",
+    "image": "",
+    "technologies": ["REST APIs", "GraphQL", "PostgreSQL"],
+    "testingTools": ["Postman", "Newman", "JMeter", "Insomnia"],
+    "link": "",
+    "github": "https://github.com/sarahjohnsonqa/healthcare-api-tests",
+    "category": "API Testing"
+  },
+  {
+    "Id": 4,
+    "title": "SaaS Platform Performance Testing",
+    "description": "Performance testing and optimization of a multi-tenant SaaS platform. Identified bottlenecks, conducted load testing, and provided recommendations for scaling. Achieved 40% improvement in response times.",
+    "image": "",
+    "technologies": ["Microservices", "Kubernetes", "Redis", "AWS"],
+    "testingTools": ["JMeter", "LoadRunner", "New Relic", "Grafana"],
+    "link": "https://saas-platform-demo.com",
+    "github": "",
+    "category": "Performance Testing"
+  },
+  {
+    "Id": 5,
+    "title": "Educational Platform Automation",
+    "description": "Built complete test automation framework for online learning platform. Covered user registration, course enrollment, video streaming, assignments, and grading system. Integrated with CI/CD pipeline for continuous testing.",
+    "image": "",
+    "technologies": ["Angular", "Express.js", "MySQL", "Video APIs"],
+    "testingTools": ["Cypress", "Selenium Grid", "TestNG", "Jenkins"],
+    "link": "https://education-platform.com",
+    "github": "https://github.com/sarahjohnsonqa/education-automation",
+    "category": "Web Testing"
+  },
+  {
+    "Id": 6,
+    "title": "IoT Device Testing Framework",
+    "description": "Designed and implemented testing strategy for IoT devices in smart home ecosystem. Tested device connectivity, data transmission, mobile app integration, and cloud synchronization across multiple device types.",
+    "image": "",
+    "technologies": ["IoT Protocols", "MQTT", "Cloud APIs", "Mobile Apps"],
+    "testingTools": ["Wireshark", "Custom Scripts", "Device Simulators"],
+    "link": "",
+    "github": "https://github.com/sarahjohnsonqa/iot-testing",
+    "category": "Mobile Testing"
+  }
+]
