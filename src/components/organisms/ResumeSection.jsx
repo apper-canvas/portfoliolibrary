@@ -67,9 +67,9 @@ const ResumeSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             My <span className="text-gradient">Journey</span>
           </h2>
-          <p className="text-lg text-secondary max-w-3xl mx-auto leading-relaxed mb-8">
-            A comprehensive overview of my professional experience, education, and career progression 
-            in quality assurance and software testing.
+<p className="text-lg text-secondary max-w-3xl mx-auto leading-relaxed mb-8">
+            A comprehensive overview of my 4 years of professional experience, education, and career progression 
+            in quality assurance and software testing. Over 50+ projects successfully tested across various domains and technologies.
           </p>
           <Button
             variant="primary"

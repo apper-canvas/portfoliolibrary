@@ -6,6 +6,7 @@
     "duration": "2022 - Present",
     "description": "Leading quality assurance initiatives for multiple enterprise-level applications. Responsible for test strategy development, automation framework implementation, and mentoring junior QA team members.",
     "achievements": [
+      "Successfully tested 20+ complex enterprise applications across various domains",
       "Reduced critical bugs in production by 60% through improved testing processes",
       "Implemented automated testing framework that decreased testing time by 45%",
       "Led cross-functional team of 8 members across 3 different projects",
@@ -16,9 +17,10 @@
     "Id": 2,
     "company": "Digital Innovations Inc",
     "role": "QA Analyst",
-    "duration": "2020 - 2022",
+    "duration": "2021 - 2022",
     "description": "Performed comprehensive testing of web and mobile applications in an agile environment. Specialized in functional, regression, and API testing while collaborating closely with development and product teams.",
     "achievements": [
+      "Thoroughly tested 15+ web and mobile applications from conception to release",
       "Executed over 500 test cases across 15+ product releases",
       "Identified and documented 200+ bugs with detailed reproduction steps",
       "Improved test coverage from 70% to 95% through systematic approach",
@@ -29,9 +31,10 @@
     "Id": 3,
     "company": "StartupTech Labs",
     "role": "Junior QA Tester",
-    "duration": "2019 - 2020",
+    "duration": "2020 - 2021",
     "description": "Entry-level position focusing on manual testing of web applications and learning automation tools. Gained experience in bug tracking, test case creation, and working in fast-paced startup environment.",
     "achievements": [
+      "Completed comprehensive testing on 10+ startup applications and features",
       "Successfully tested 3 major product launches from concept to production",
       "Developed comprehensive test documentation and procedures",
       "Contributed to 25% reduction in post-release defects",
@@ -42,9 +45,10 @@
     "Id": 4,
     "company": "QualityFirst Consulting",
     "role": "QA Intern",
-    "duration": "2018 - 2019",
+    "duration": "2020 - 2020",
     "description": "Internship position providing exposure to various testing methodologies and industry best practices. Assisted senior QA engineers with test execution and documentation while learning professional testing tools.",
     "achievements": [
+      "Gained hands-on experience testing 5+ client projects across different industries",
       "Completed comprehensive training on manual and automated testing",
       "Assisted in testing 5 client projects across different industries",
       "Created detailed test reports and bug documentation",
