@@ -2,24 +2,46 @@ import { motion } from 'framer-motion'
 import ApperIcon from '@/components/ApperIcon'
 
 const SkillCard = ({ skill, index }) => {
-  const getIconName = (skillName) => {
+const getIconName = (skillName) => {
     const iconMap = {
-      'Manual Testing': 'TestTube',
-      'Automation Testing': 'Bot',
-      'API Testing': 'Network',
-      'Performance Testing': 'Gauge',
-      'Security Testing': 'Shield',
+      // Manual Testing Skills
+      'Test Case Design': 'FileText',
+      'Exploratory Testing': 'Search',
+      'User Acceptance Testing': 'Users',
+      'Bug Reporting & Tracking': 'Bug',
+      'Cross-browser Testing': 'Monitor',
       'Mobile Testing': 'Smartphone',
-      'Selenium': 'Code',
+      
+      // Automation Testing Skills
+      'Selenium WebDriver': 'Code',
       'Cypress': 'Circle',
       'Jest': 'Check',
-      'Postman': 'Send',
-      'JIRA': 'Bug',
-      'TestRail': 'List',
-      'SQL': 'Database',
+      'TestComplete': 'Bot',
+      'Appium': 'Smartphone',
+      
+      // Programming/Scripting Knowledge
       'Python': 'FileCode',
       'JavaScript': 'Braces',
-      'Java': 'Coffee'
+      'Java': 'Coffee',
+      'Shell Scripting': 'Terminal',
+      
+      // API Testing
+      'REST API Testing': 'Network',
+      'Postman': 'Send',
+      'SOAP API Testing': 'Globe',
+      'GraphQL Testing': 'GitBranch',
+      
+      // Performance Testing
+      'Load Testing': 'Gauge',
+      'JMeter': 'BarChart',
+      'LoadRunner': 'TrendingUp',
+      'Stress Testing': 'Zap',
+      
+      // Databases & SQL
+      'SQL Queries': 'Database',
+      'Database Testing': 'Table',
+      'MySQL': 'Database',
+      'PostgreSQL': 'Server'
     }
     return iconMap[skillName] || 'Zap'
   }
