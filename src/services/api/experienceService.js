@@ -26,9 +26,17 @@ const experienceService = {
         console.error(response.message)
         toast.error(response.message)
         return []
-      }
+}
       
-      return response.data || []
+      // Transform achievements from string to array for UI compatibility
+      const transformedData = (response.data || []).map(item => ({
+        ...item,
+        achievements: Array.isArray(item.achievements) 
+          ? item.achievements 
+          : (item.achievements || '').split('\n').filter(line => line.trim())
+      }))
+      
+      return transformedData
     } catch (error) {
       console.error("Error fetching experience:", error)
       throw error
@@ -59,9 +67,17 @@ const experienceService = {
       if (!response.success) {
         console.error(response.message)
         throw new Error(response.message)
-      }
+}
       
-      return response.data
+      // Transform achievements from string to array for UI compatibility
+      const transformedData = response.data ? {
+        ...response.data,
+        achievements: Array.isArray(response.data.achievements) 
+          ? response.data.achievements 
+          : (response.data.achievements || '').split('\n').filter(line => line.trim())
+      } : null
+      
+      return transformedData
     } catch (error) {
       console.error(`Error fetching experience with ID ${id}:`, error)
       throw error
