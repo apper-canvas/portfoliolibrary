@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
+import ApperIcon from "@/components/ApperIcon";
 import SkillCard from "@/components/molecules/SkillCard";
-import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import Empty from "@/components/ui/Empty";
-import ApperIcon from "@/components/ui/ApperIcon";
+import Loading from "@/components/ui/Loading";
 import skillsService from "@/services/api/skillsService";
-
 const AboutSection = () => {
   const [skills, setSkills] = useState([])
   const [loading, setLoading] = useState(true)
