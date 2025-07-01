@@ -1,49 +1,209 @@
-import experienceData from '@/services/mockData/experience.json'
+import { toast } from 'react-toastify'
 
 const experienceService = {
   async getAll() {
-    await new Promise(resolve => setTimeout(resolve, 300))
-    return [...experienceData]
+    try {
+      const { ApperClient } = window.ApperSDK
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      })
+      
+      const params = {
+        fields: [
+          { field: { Name: "Name" } },
+          { field: { Name: "company" } },
+          { field: { Name: "role" } },
+          { field: { Name: "duration" } },
+          { field: { Name: "description" } },
+          { field: { Name: "achievements" } }
+        ]
+      }
+      
+      const response = await apperClient.fetchRecords('experience', params)
+      
+      if (!response.success) {
+        console.error(response.message)
+        toast.error(response.message)
+        return []
+      }
+      
+      return response.data || []
+    } catch (error) {
+      console.error("Error fetching experience:", error)
+      throw error
+    }
   },
 
   async getById(id) {
-    await new Promise(resolve => setTimeout(resolve, 200))
-    const experience = experienceData.find(exp => exp.Id === parseInt(id))
-    if (!experience) {
-      throw new Error('Experience not found')
+    try {
+      const { ApperClient } = window.ApperSDK
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      })
+      
+      const params = {
+        fields: [
+          { field: { Name: "Name" } },
+          { field: { Name: "company" } },
+          { field: { Name: "role" } },
+          { field: { Name: "duration" } },
+          { field: { Name: "description" } },
+          { field: { Name: "achievements" } }
+        ]
+      }
+      
+      const response = await apperClient.getRecordById('experience', parseInt(id), params)
+      
+      if (!response.success) {
+        console.error(response.message)
+        throw new Error(response.message)
+      }
+      
+      return response.data
+    } catch (error) {
+      console.error(`Error fetching experience with ID ${id}:`, error)
+      throw error
     }
-    return { ...experience }
   },
 
-  async create(experienceData) {
-    await new Promise(resolve => setTimeout(resolve, 400))
-    const maxId = Math.max(...experienceData.map(exp => exp.Id), 0)
-    const newExperience = {
-      ...experienceData,
-      Id: maxId + 1
+  async create(expData) {
+    try {
+      const { ApperClient } = window.ApperSDK
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      })
+      
+      // Only include Updateable fields
+      const updateableData = {
+        Name: expData.Name || expData.role,
+        Tags: expData.Tags || "",
+        Owner: expData.Owner,
+        company: expData.company,
+        role: expData.role,
+        duration: expData.duration,
+        description: expData.description,
+        achievements: Array.isArray(expData.achievements) ? expData.achievements.join('\n') : expData.achievements
+      }
+      
+      const params = {
+        records: [updateableData]
+      }
+      
+      const response = await apperClient.createRecord('experience', params)
+      
+      if (!response.success) {
+        console.error(response.message)
+        toast.error(response.message)
+        throw new Error(response.message)
+      }
+      
+      if (response.results) {
+        const failedRecords = response.results.filter(result => !result.success)
+        if (failedRecords.length > 0) {
+          console.error(`Failed to create ${failedRecords.length} records:${JSON.stringify(failedRecords)}`)
+          failedRecords.forEach(record => {
+            if (record.message) toast.error(record.message)
+          })
+        }
+        
+        const successfulRecords = response.results.filter(result => result.success)
+        return successfulRecords.length > 0 ? successfulRecords[0].data : null
+      }
+    } catch (error) {
+      console.error("Error creating experience:", error)
+      throw error
     }
-    experienceData.push(newExperience)
-    return { ...newExperience }
   },
 
   async update(id, updates) {
-    await new Promise(resolve => setTimeout(resolve, 400))
-    const index = experienceData.findIndex(exp => exp.Id === parseInt(id))
-    if (index === -1) {
-      throw new Error('Experience not found')
+    try {
+      const { ApperClient } = window.ApperSDK
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      })
+      
+      // Only include Updateable fields
+      const updateableData = {
+        Id: parseInt(id),
+        Name: updates.Name || updates.role,
+        Tags: updates.Tags || "",
+        Owner: updates.Owner,
+        company: updates.company,
+        role: updates.role,
+        duration: updates.duration,
+        description: updates.description,
+        achievements: Array.isArray(updates.achievements) ? updates.achievements.join('\n') : updates.achievements
+      }
+      
+      const params = {
+        records: [updateableData]
+      }
+      
+      const response = await apperClient.updateRecord('experience', params)
+      
+      if (!response.success) {
+        console.error(response.message)
+        toast.error(response.message)
+        throw new Error(response.message)
+      }
+      
+      if (response.results) {
+        const failedRecords = response.results.filter(result => !result.success)
+        if (failedRecords.length > 0) {
+          console.error(`Failed to update ${failedRecords.length} records:${JSON.stringify(failedRecords)}`)
+          failedRecords.forEach(record => {
+            if (record.message) toast.error(record.message)
+          })
+        }
+        
+        const successfulRecords = response.results.filter(result => result.success)
+        return successfulRecords.length > 0 ? successfulRecords[0].data : null
+      }
+    } catch (error) {
+      console.error("Error updating experience:", error)
+      throw error
     }
-    experienceData[index] = { ...experienceData[index], ...updates }
-    return { ...experienceData[index] }
   },
 
   async delete(id) {
-    await new Promise(resolve => setTimeout(resolve, 400))
-    const index = experienceData.findIndex(exp => exp.Id === parseInt(id))
-    if (index === -1) {
-      throw new Error('Experience not found')
+    try {
+      const { ApperClient } = window.ApperSDK
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      })
+      
+      const params = {
+        RecordIds: [parseInt(id)]
+      }
+      
+      const response = await apperClient.deleteRecord('experience', params)
+      
+      if (!response.success) {
+        console.error(response.message)
+        toast.error(response.message)
+        throw new Error(response.message)
+      }
+      
+      if (response.results) {
+        const failedRecords = response.results.filter(result => !result.success)
+        if (failedRecords.length > 0) {
+          console.error(`Failed to delete ${failedRecords.length} records:${JSON.stringify(failedRecords)}`)
+          failedRecords.forEach(record => {
+            if (record.message) toast.error(record.message)
+          })
+        }
+        
+        return response.results.filter(result => result.success).length > 0
+      }
+    } catch (error) {
+      console.error("Error deleting experience:", error)
+      throw error
     }
-    const deletedExperience = experienceData.splice(index, 1)[0]
-    return { ...deletedExperience }
   }
 }
 

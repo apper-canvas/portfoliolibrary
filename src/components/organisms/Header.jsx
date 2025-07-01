@@ -1,14 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useSelector } from 'react-redux'
 import ApperIcon from '@/components/ApperIcon'
 import NavigationLink from '@/components/molecules/NavigationLink'
 import Button from '@/components/atoms/Button'
-
+import { AuthContext } from '../../App'
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
-
+  const { logout } = useContext(AuthContext)
+  const { isAuthenticated } = useSelector((state) => state.user)
   const navigationItems = [
     { href: '#home', label: 'Home' },
     { href: '#about', label: 'About' },
@@ -85,15 +87,25 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* CTA Button */}
+{/* CTA Button */}
             <div className="hidden md:block">
-              <Button
-                variant="primary"
-                size="sm"
-                onClick={() => document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })}
-              >
-                Hire Me
-              </Button>
+              {isAuthenticated ? (
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={logout}
+                >
+                  Logout
+                </Button>
+              ) : (
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={() => document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Hire Me
+                </Button>
+              )}
             </div>
 
             {/* Mobile Menu Button */}
@@ -145,17 +157,30 @@ const Header = () => {
                     {item.label}
                   </NavigationLink>
                 ))}
-                <div className="pt-4 border-t border-gray-200">
-                  <Button
-                    variant="primary"
-                    className="w-full"
-                    onClick={() => {
-                      document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })
-                      closeMobileMenu()
-                    }}
-                  >
-                    Hire Me
-                  </Button>
+<div className="pt-4 border-t border-gray-200">
+                  {isAuthenticated ? (
+                    <Button
+                      variant="primary"
+                      className="w-full"
+                      onClick={() => {
+                        logout()
+                        closeMobileMenu()
+                      }}
+                    >
+                      Logout
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="primary"
+                      className="w-full"
+                      onClick={() => {
+                        document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })
+                        closeMobileMenu()
+                      }}
+                    >
+                      Hire Me
+                    </Button>
+                  )}
                 </div>
               </nav>
             </motion.div>
