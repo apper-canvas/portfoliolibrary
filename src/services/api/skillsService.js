@@ -13,7 +13,8 @@ const params = {
         fields: [
           { field: { Name: "Name" } },
           { field: { Name: "category" } },
-          { field: { Name: "proficiency" } }
+          { field: { Name: "proficiency" } },
+          { field: { Name: "testingExpertiseCategory" } }
         ],
         includeDeletedRecords: false
       }
@@ -47,7 +48,8 @@ const params = {
         fields: [
           { field: { Name: "Name" } },
           { field: { Name: "category" } },
-          { field: { Name: "proficiency" } }
+          { field: { Name: "proficiency" } },
+          { field: { Name: "testingExpertiseCategory" } }
         ],
         includeDeletedRecords: false
       }
@@ -74,13 +76,14 @@ const params = {
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
       })
       
-      // Only include Updateable fields
+// Only include Updateable fields
       const updateableData = {
         Name: skillData.Name || skillData.name,
         Tags: skillData.Tags || "",
         Owner: skillData.Owner,
         category: skillData.category,
-        proficiency: parseInt(skillData.proficiency)
+        proficiency: parseInt(skillData.proficiency),
+        testingExpertiseCategory: skillData.testingExpertiseCategory
       }
       
       const params = {
@@ -121,14 +124,15 @@ const params = {
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
       })
       
-      // Only include Updateable fields
+// Only include Updateable fields
       const updateableData = {
         Id: parseInt(id),
         Name: updates.Name || updates.name,
         Tags: updates.Tags || "",
         Owner: updates.Owner,
         category: updates.category,
-        proficiency: parseInt(updates.proficiency)
+        proficiency: parseInt(updates.proficiency),
+        testingExpertiseCategory: updates.testingExpertiseCategory
       }
       
       const params = {
