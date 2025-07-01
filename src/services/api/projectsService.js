@@ -21,8 +21,6 @@ const projectsService = {
           { field: { Name: "github" } },
           { field: { Name: "category" } }
         ],
-        // Cache-busting parameter to ensure fresh data
-        cacheKey: `projects_${Date.now()}`,
         includeDeletedRecords: false,
         orderBy: [{ fieldName: "CreatedOn", sorttype: "DESC" }]
       }
@@ -73,8 +71,6 @@ if (error?.response?.data?.message) {
           { field: { Name: "github" } },
           { field: { Name: "category" } }
         ],
-        // Cache-busting parameter to ensure fresh data
-        cacheKey: `project_${id}_${Date.now()}`,
         includeDeletedRecords: false
       }
       
