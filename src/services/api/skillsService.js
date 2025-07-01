@@ -9,14 +9,12 @@ const skillsService = {
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
 })
       
-      const params = {
+const params = {
         fields: [
           { field: { Name: "Name" } },
           { field: { Name: "category" } },
           { field: { Name: "proficiency" } }
         ],
-        // Cache-busting parameter to ensure fresh data
-        cacheKey: `skills_${Date.now()}`,
         includeDeletedRecords: false
       }
       
@@ -45,14 +43,12 @@ const skillsService = {
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
 })
       
-      const params = {
+const params = {
         fields: [
           { field: { Name: "Name" } },
           { field: { Name: "category" } },
           { field: { Name: "proficiency" } }
         ],
-        // Cache-busting parameter to ensure fresh data
-        cacheKey: `skill_${id}_${Date.now()}`,
         includeDeletedRecords: false
       }
       
