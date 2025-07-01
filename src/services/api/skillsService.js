@@ -30,8 +30,10 @@ const skillsService = {
       
       return response.data || []
     } catch (error) {
-      console.error("Error fetching skills:", error)
-      throw error
+      if (error?.response?.data?.message) {
+        console.error("Error fetching skills:", error?.response?.data?.message)  
+      }      
+      //throw error
     }
   },
 
